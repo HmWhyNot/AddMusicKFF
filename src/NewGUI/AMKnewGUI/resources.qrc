@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Secret.wav</file>
+    </qresource>
+</RCC>

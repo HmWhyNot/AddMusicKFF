@@ -8,6 +8,8 @@ src/Release
 src/Debug
 src/**/Release
 src/**/Debug
+src/**/build*
+src/**/bak
 !**/addmusick/
 **/addmusick
 **/asar

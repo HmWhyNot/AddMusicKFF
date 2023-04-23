@@ -11,12 +11,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Multimedia)
+#find_package(Qt5Multimedia REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        resultform.h
+        resultform.cpp
+        resultform.ui
+        resources.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -43,6 +49,7 @@ else()
 endif()
 
 target_link_libraries(AMKnewGUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(AMKnewGUI PRIVATE Qt${QT_VERSION_MAJOR}::Multimedia)
 
 set_target_properties(AMKnewGUI PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
