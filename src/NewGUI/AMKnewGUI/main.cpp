@@ -5,7 +5,8 @@
 int main(int argc, char *argv[])
 {
 //    QFont font("Tahoma");
-    QFont font;
+    QFont font("Arial");
+//    QFont font;
     font.setPixelSize(11);
 
     QApplication a(argc, argv);

@@ -187,7 +187,7 @@ void MainWindow::on_localSongList_itemSelectionChanged()
 
     ui->downButton->setEnabled(ui->localSongList->currentIndex().isValid() && ui->localSongList->currentRow() < ui->localSongList->count() - 1);
 
-    ui->globalSongLabel->setText(QString::number(ui->globalSongList->height()));
+//    ui->globalSongLabel->setText(QString::number(ui->globalSongList->height()));
 //    ui->addSongButton->setEnabled(ui->localSongList->count() == 0 || ui->localSongList->currentRow() != 0);
 }
 
