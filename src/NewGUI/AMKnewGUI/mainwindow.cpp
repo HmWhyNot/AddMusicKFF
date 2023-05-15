@@ -247,10 +247,11 @@ void MainWindow::runAMK()
         file.write(writeStr.toUtf8());
         file.close();
 
-        QProcess *amk = new QProcess(this);
+//        QProcess *amk = new QProcess(this);
+        QProcess amk(this);
         QStringList arguments;
-        amk->setProgram(listFolderPath + "AddmusicK");
-        amk->setWorkingDirectory(listFolderPath);
+        amk.setProgram(listFolderPath + "AddmusicK");
+        amk.setWorkingDirectory(listFolderPath);
 
         if ( !ui->porterModeCheckBox->isChecked() )
         {
@@ -280,15 +281,15 @@ void MainWindow::runAMK()
         amkError = "";
         amkOutput = "";
 
-        amk->setArguments(arguments);
+        amk.setArguments(arguments);
 
 //        connect(amk, SIGNAL(started()), this, SLOT(AmkStarted()));
 //        connect(amk, SIGNAL(finished(int)), this, SLOT(AmkFinished()));
 
-        connect(amk, &QProcess::readyReadStandardOutput, this, &MainWindow::AmkOutputDataHandler);
-        connect(amk, &QProcess::readyReadStandardError, this, &MainWindow::AmkErrorDataHandler);
-        amk->start();
-        if ( !amk->waitForFinished() )
+        connect(&amk, &QProcess::readyReadStandardOutput, this, &MainWindow::AmkOutputDataHandler);
+        connect(&amk, &QProcess::readyReadStandardError, this, &MainWindow::AmkErrorDataHandler);
+        amk.start();
+        if ( !amk.waitForFinished() )
         {
             //
         }
@@ -297,13 +298,13 @@ void MainWindow::runAMK()
 
         if ( !ui->porterModeCheckBox->isChecked() )
         {
-            ResultForm *results = new ResultForm(amk->exitCode() == 0 ? amkOutput : amkError, amk->exitCode() == 0, this);
-            results->setWindowFlags(Qt::Dialog);
-            results->exec();
+            ResultForm results(amk.exitCode() == 0 ? amkOutput : amkError, amk.exitCode() == 0, this);
+            results.setWindowFlags(Qt::Dialog);
+            results.exec();
         }
         else
         {
-            if ( amk->exitCode() == 0 )
+            if ( amk.exitCode() == 0 )
             {
                 QString searchStr("Completed in ");
                 try {
